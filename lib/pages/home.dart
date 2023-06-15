@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         ApiService.getCurrentUser().then((value) {
           setState(() {
             username = value!.username;
-            imageUrl = value!.imageUrl;
+            imageUrl = value.imageUrl;
           });
         });
       },
@@ -74,9 +74,9 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(60),
-                    child: imageUrl.length<0
+                    child: imageUrl != ''
                         ? Image.network(
-                      imageUrl,
+                            imageUrl,
                             width: 100,
                             height: 100,
                           )
