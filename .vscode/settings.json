@@ -1,0 +1,9 @@
+{
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "cSpell.words": [
+        "firstapp",
+        "fluttertoast"
+    ],
+    // disable cSpell 
+    "cSpell.enabled": false
+}
