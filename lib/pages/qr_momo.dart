@@ -30,9 +30,11 @@ class _QrMomoState extends State<QrMomo> {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 30, bottom: 30),
-            child: Text('Quét mã để thanh toánn', style: TextStyle(fontSize: 26,color: Colors.purple),),
+            child: Text('Quét mã để thanh toán', style: TextStyle(fontSize: 26,color: Colors.purple),),
           ),
           Image(image: AssetImage('assets/imageMomo.jpg')),
+          SizedBox(height: 10,),
+          Text('QR code MoMo', style: TextStyle(fontSize: 24, color: Colors.purple),),
           SizedBox(height: 40,),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
@@ -74,6 +76,53 @@ class _QrMomoState extends State<QrMomo> {
               ],
             ),
           ),
+          SizedBox(height: 40,),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  color: Colors.blue,
+                  child: TextButton(
+                      onPressed:() async {
+
+                      },
+                      child: Text('Xác nhận',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+                  ),
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.blue, // Màu sắc của border
+                      width: 2.0, // Độ dày của border
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: () async {},
+                    child: Text(
+                      'Đóng',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+
+
+            ],
+          )
         ],
       ),
     );

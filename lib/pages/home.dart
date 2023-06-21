@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstapp/models/home_trend_model.dart';
+import 'package:firstapp/pages/history.dart';
 import 'package:firstapp/pages/momo.dart';
 import 'package:firstapp/pages/payment.dart';
 import 'package:firstapp/pages/profile.dart';
@@ -137,6 +138,12 @@ class _HomePageState extends State<HomePage> {
               'Thanh toán',
               () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Payment())),
+            ),
+            CustomerListTitle(
+              Icons.history,
+              'Lịch sử',
+                  () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const History())),
             ),
             CustomerListTitle(Icons.settings, 'Cài đặt', () => {}),
             CustomerListTitle(Icons.notifications, 'Thông báo', () => {}),
