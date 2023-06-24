@@ -235,65 +235,7 @@ class _PaymentState extends State<Payment> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            //Text(_paymentStatus.isEmpty ? "CHƯA THANH TOÁN" : _paymentStatus)
-                          ],
-                        ),
-                      ),
-                      Center(
-                        child: Column(
-                          children: <Widget>[
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 0, horizontal: 20),
-                                  child: Container(
-                                    color: Color(0xFFD82D8B),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 4),
-                                          child: Image(
-                                            image:
-                                                AssetImage('assets/MoMo.png'),
-                                            width: 40,
-                                            height: 40,
-                                          ),
-                                        ),
-                                        TextButton(
-                                          child: Text(
-                                            'QR code MoMo',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          onPressed: () async {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const QrMomo()));
-                                          },
-                                        ),
-                                        Spacer(),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 4),
-                                          child: Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: Colors.white,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(_paymentStatus.isEmpty
@@ -302,9 +244,9 @@ class _PaymentState extends State<Payment> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
-                      )
+                      ),
                     ],
                   ),
                 );
