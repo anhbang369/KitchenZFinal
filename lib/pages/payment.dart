@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:firstapp/pages/menu.dart';
+import 'package:firstapp/pages/qr_momo.dart';
 import 'package:firstapp/service/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -32,10 +34,10 @@ class _PaymentState extends State<Payment> {
     _paymentStatus = "";
     initPlatformState();
   }
+
   Future<void> initPlatformState() async {
     if (!mounted) return;
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -66,10 +68,12 @@ class _PaymentState extends State<Payment> {
                 return Center(
                   child: Column(
                     children: [
-                      SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Container(
-                        margin: const EdgeInsets.only(
-                            right: 15, left: 15, top: 10),
+                        margin:
+                            const EdgeInsets.only(right: 15, left: 15, top: 10),
                         child: Image.network(
                             'https://img.icons8.com/nolan/96/cash-receipt.png'),
                       ),
@@ -86,100 +90,144 @@ class _PaymentState extends State<Payment> {
                             ).createShader(const Rect.fromLTWH(0, 0, 200, 40)),
                         ),
                       ),
-                      SizedBox(height: 20,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 30),
                         child: Text(
                           'Mang đến cho bạn những trãi nghiệm tốt nhất, cũng như được cung cấp một số đặc quyền chỉ dành cho thành viên Premium',
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height: 40,),
+                      const SizedBox(
+                        height: 40,
+                      ),
                       const Text(
                         '60.000 VND',
                         style:
                             TextStyle(fontSize: 50, color: Colors.deepOrange),
                       ),
-                      SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       const Text(
                         'Thanh toán 30 ngày một lần',
                         style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 20),
                         child: Container(
                           color: Colors.blueAccent,
                           child: Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 4),
-                                child: Image(image: AssetImage('assets/visa.jpg'),width: 40,height: 40,),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 4),
+                                child: Image(
+                                  image: AssetImage('assets/visa.jpg'),
+                                  width: 40,
+                                  height: 40,
+                                ),
                               ),
                               Container(
                                 child: TextButton(
-                                  child: Text('Thanh toán Visa', style: TextStyle(color: Colors.white, fontSize: 16),),
+                                  child: const Text(
+                                    'Thanh toán Visa',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
                                   onPressed: () async {
                                     await makePayment();
                                   },
                                 ),
                               ),
-                              Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 4),
-                                child: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.only(right: 4),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                ),
                               ),
-
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Center(
                         child: Column(
                           children: <Widget>[
                             Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 20),
                                   child: Container(
-                                    color: Color(0xFFD82D8B),
+                                    color: const Color(0xFFD82D8B),
                                     child: Row(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 4),
-                                          child: Image(image: AssetImage('assets/MoMo.png'),width: 40,height: 40,),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 4),
+                                          child: Image(
+                                            image:
+                                                AssetImage('assets/MoMo.png'),
+                                            width: 40,
+                                            height: 40,
+                                          ),
                                         ),
                                         TextButton(
-                                          child: Text('Thanh toán MoMo', style: TextStyle(color: Colors.white),),
+                                          child: const Text(
+                                            'Thanh toán MoMo',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                           onPressed: () async {
-                                            MomoPaymentInfo options = MomoPaymentInfo(
-                                                merchantName: "KitchenZ",
-                                                appScheme: "MOxx",
-                                                merchantCode: 'MOMOMWNB20210129',
-                                                partnerCode: 'MOMOMWNB20210129',
-                                                amount: 60000,
-                                                orderId: '12321312',
-                                                orderLabel: 'Gói combo',
-                                                merchantNameLabel: "HLGD",
-                                                fee: 10,
-                                                description: 'Thanh toán gói Vip',
-                                                username: '0387788906',
-                                                partner: 'merchant',
-                                                extra: "{\"key1\":\"value1\",\"key2\":\"value2\"}",
-                                                isTestMode: false
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const QrMomo(),
+                                              ),
                                             );
-                                            try {
-                                              _momoPay.open(options);
-                                            } catch (e) {
-                                              debugPrint(e.toString());
-                                            }
+                                            //   MomoPaymentInfo options =
+                                            //       MomoPaymentInfo(
+                                            //           merchantName: "KitchenZ",
+                                            //           appScheme: "MOxx",
+                                            //           merchantCode:
+                                            //               'MOMOMWNB20210129',
+                                            //           partnerCode:
+                                            //               'MOMOMWNB20210129',
+                                            //           amount: 1000,
+                                            //           orderId: '12321312',
+                                            //           orderLabel: 'Gói combo',
+                                            //           merchantNameLabel: "HLGD",
+                                            //           fee: 0,
+                                            //           description:
+                                            //               'Thanh toán gói Vip',
+                                            //           username: '0387788906',
+                                            //           partner: 'merchant',
+                                            //           extra:
+                                            //               "{\"key1\":\"value1\",\"key2\":\"value2\"}",
+                                            //           isTestMode: false);
+                                            //   try {
+                                            //     _momoPay.open(options);
+                                            //   } catch (e) {
+                                            //     debugPrint(e.toString());
+                                            //   }
                                           },
                                         ),
-                                        Spacer(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 4),
-                                          child: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                                        const Spacer(),
+                                        const Padding(
+                                          padding: EdgeInsets.only(right: 4),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: Colors.white,
+                                          ),
                                         )
                                       ],
                                     ),
@@ -187,12 +235,18 @@ class _PaymentState extends State<Payment> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20,),
-                            Text(_paymentStatus.isEmpty ? "CHƯA THANH TOÁN" : _paymentStatus)
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(_paymentStatus.isEmpty
+                                ? "CHƯA THANH TOÁN"
+                                : _paymentStatus)
                           ],
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 );
@@ -206,7 +260,7 @@ class _PaymentState extends State<Payment> {
 
   Future<void> makePayment() async {
     try {
-      paymentIntent = await createPaymentIntent('60000', 'VND');
+      paymentIntent = await createPaymentIntent('1000', 'VND');
       //Payment Sheet
       await Stripe.instance
           .initPaymentSheet(
@@ -232,7 +286,7 @@ class _PaymentState extends State<Payment> {
           if (user.isVip == true) {
             showDialog(
               context: context,
-              builder: (_) => AlertDialog(
+              builder: (_) => const AlertDialog(
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -255,7 +309,7 @@ class _PaymentState extends State<Payment> {
         }).catchError((error) {
           showDialog(
             context: context,
-            builder: (_) => AlertDialog(
+            builder: (_) => const AlertDialog(
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -330,6 +384,7 @@ class _PaymentState extends State<Payment> {
     super.dispose();
     _momoPay.clear();
   }
+
   void _setState() {
     _paymentStatus = 'Đã chuyển thanh toán';
     if (_momoPaymentResult.isSuccess == true) {
@@ -337,21 +392,24 @@ class _PaymentState extends State<Payment> {
       _paymentStatus += "\nstatus: " + _momoPaymentResult.status.toString();
       _paymentStatus += "\nmessage: " + _momoPaymentResult.message.toString();
       _paymentStatus += "\nphone: " + _momoPaymentResult.phoneNumber.toString();
-      _paymentStatus += "\nExtra: " + _momoPaymentResult.extra!;
+      // _paymentStatus += "\nExtra: " + _momoPaymentResult.extra!;
       _paymentStatus += "\ntoken: " + _momoPaymentResult.token.toString();
-    }
-    else {
+    } else {
       _paymentStatus += "\nTình trạng: Thất bại.";
       _paymentStatus += "\nExtra: " + _momoPaymentResult.extra.toString();
       _paymentStatus += "\nMã lỗi: " + _momoPaymentResult.status.toString();
     }
+    Clipboard.setData(ClipboardData(text: _paymentStatus));
   }
+
   void _handlePaymentSuccess(PaymentResponse response) {
     setState(() {
       _momoPaymentResult = response;
       _setState();
     });
-    Fluttertoast.showToast(msg: "THÀNH CÔNG: " + response.phoneNumber.toString(), toastLength: Toast.LENGTH_SHORT);
+    Fluttertoast.showToast(
+        msg: "THÀNH CÔNG: " + response.phoneNumber.toString(),
+        toastLength: Toast.LENGTH_SHORT);
   }
 
   void _handlePaymentError(PaymentResponse response) {
@@ -359,7 +417,8 @@ class _PaymentState extends State<Payment> {
       _momoPaymentResult = response;
       _setState();
     });
-    Fluttertoast.showToast(msg: "THẤT BẠI: " + response.message.toString(), toastLength: Toast.LENGTH_SHORT);
+    Fluttertoast.showToast(
+        msg: "THẤT BẠI: " + response.message.toString(),
+        toastLength: Toast.LENGTH_SHORT);
   }
-
 }
