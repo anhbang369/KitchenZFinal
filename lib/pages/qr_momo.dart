@@ -106,39 +106,47 @@ class _QrMomoState extends State<QrMomo> {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       const Spacer(),
-                      Row(
-                        children: [
-                          Text(
-                            'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}',
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Clipboard.setData(ClipboardData(
-                                  text:
-                                      'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}'));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Copied to clipboard')),
-                              );
-                            },
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.copy,
-                                color: Colors.grey.shade600,
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}',
+                                style: const TextStyle(fontSize: 18),
+                                softWrap: true,
                               ),
-                              onPressed: () {
+                            ),
+                            GestureDetector(
+                              onTap: () {
                                 Clipboard.setData(ClipboardData(
-                                    text:
-                                        'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}'));
+                                  text:
+                                      'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}',
+                                ));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text('Copied to clipboard')),
                                 );
                               },
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.copy,
+                                  color: Colors.grey.shade600,
+                                ),
+                                onPressed: () {
+                                  Clipboard.setData(ClipboardData(
+                                    text:
+                                        'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}',
+                                  ));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Copied to clipboard')),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
