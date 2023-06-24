@@ -7,7 +7,9 @@ import 'package:firstapp/models/deal_model.dart';
 import 'package:firstapp/models/deal_view_model.dart';
 import 'package:firstapp/models/ingredient_model.dart';
 import 'package:firstapp/models/nutrition_model.dart';
+import 'package:firstapp/models/payment_model.dart';
 import 'package:firstapp/models/user_model.dart';
+import 'package:firstapp/pages/payment.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/dish_model.dart';
@@ -347,6 +349,26 @@ class ApiService {
       }
     } else {
       throw Exception('Failed to update user');
+    }
+  }
+
+  static Future<PaymentModel> createPayment() async {
+    UserModel? user = await getCurrentUser();
+    if (user != null) {
+      final response = await http.get(
+        Uri.parse('$_baseUrl/payment/create?uid=${user.id}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 200) {
+        final data = jsonDecode(utf8.decode(response.body.runes.toList()));
+        return PaymentModel.fromJson(data);
+      } else {
+        throw Exception('Failed to create payment');
+      }
+    } else {
+      throw Exception('Failed to create payment');
     }
   }
 }
