@@ -109,13 +109,14 @@ class _QrMomoState extends State<QrMomo> {
                       Row(
                         children: [
                           Text(
-                            '${snapshot.data!.id}',
+                            'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}',
                             style: const TextStyle(fontSize: 18),
                           ),
                           GestureDetector(
                             onTap: () {
-                              Clipboard.setData(
-                                  ClipboardData(text: '${snapshot.data!.id}'));
+                              Clipboard.setData(ClipboardData(
+                                  text:
+                                      'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}'));
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Copied to clipboard')),
@@ -128,7 +129,8 @@ class _QrMomoState extends State<QrMomo> {
                               ),
                               onPressed: () {
                                 Clipboard.setData(ClipboardData(
-                                    text: '${snapshot.data!.id}'));
+                                    text:
+                                        'Đăng ký thành viên VIP cho ứng dụng KitchenZ với id là ${snapshot.data!.id}'));
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text('Copied to clipboard')),
