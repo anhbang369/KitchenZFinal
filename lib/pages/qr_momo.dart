@@ -44,7 +44,7 @@ class _QrMomoState extends State<QrMomo> {
                 const SizedBox(
                   height: 40,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   child: Row(
                     children: [
@@ -61,7 +61,7 @@ class _QrMomoState extends State<QrMomo> {
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   child: Row(
                     children: [
@@ -78,7 +78,7 @@ class _QrMomoState extends State<QrMomo> {
                     ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                   child: Row(
                     children: [

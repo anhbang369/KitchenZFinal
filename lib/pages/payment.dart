@@ -286,7 +286,7 @@ class _PaymentState extends State<Payment> {
           if (user.isVip == true) {
             showDialog(
               context: context,
-              builder: (_) => const AlertDialog(
+              builder: (_) => AlertDialog(
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -309,7 +309,7 @@ class _PaymentState extends State<Payment> {
         }).catchError((error) {
           showDialog(
             context: context,
-            builder: (_) => const AlertDialog(
+            builder: (_) => AlertDialog(
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
