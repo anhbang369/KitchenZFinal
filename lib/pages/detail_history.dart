@@ -90,6 +90,18 @@ class _DetailHistoryState extends State<DetailHistory> {
               ],
             ),
           ),
+          SizedBox(height: 30,),//chỉ admin với hiện Button Cấp vip, còn user chỉ xem detail thôi
+          TextButton(
+              onPressed: ()=>{
+
+              },
+              child: Container(
+                color: Colors.blue,
+                  width: 100,
+                  height: 40,
+                  child: Center(child: Text('Cấp VIP', style: TextStyle(fontSize: 20,color: Colors.white),)),
+              ),
+          )
         ],
       ),
     );
