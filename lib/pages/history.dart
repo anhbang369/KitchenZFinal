@@ -33,24 +33,26 @@ class _HistoryState extends State<History> {
             child: Container(
               child: Row(
                 children: [
-                  Text('STT', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  Text(
+                    'STT',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                   Spacer(),
-                  Text('Mã thanh toán', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  Text(
+                    'Mã thanh toán',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                   Spacer(),
-                  Text('Status', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  Text(
+                    'Status',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
           ),
           GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailHistory(),
-                ),
-              );
-            },
+            onTap: () {},
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               child: Column(
@@ -62,14 +64,23 @@ class _HistoryState extends State<History> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 5),
-                          child: Text('1', style: TextStyle(fontSize: 18),),
+                          child: Text(
+                            '1',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                         Spacer(),
-                        Text('n465das4d6a54d5sa6', style: TextStyle(fontSize: 18),),
+                        Text(
+                          'n465das4d6a54d5sa6',
+                          style: TextStyle(fontSize: 18),
+                        ),
                         Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(right: 5),
-                          child: Text('Thành công', style: TextStyle(fontSize: 18, color: Colors.green),),
+                          child: Text(
+                            'Thành công',
+                            style: TextStyle(fontSize: 18, color: Colors.green),
+                          ),
                         ),
                       ],
                     ),
@@ -78,7 +89,9 @@ class _HistoryState extends State<History> {
               ),
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
         ],
       ),
     );

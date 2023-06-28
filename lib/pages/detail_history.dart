@@ -1,13 +1,17 @@
+import 'package:firstapp/models/payment_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DetailHistory extends StatefulWidget {
-  const DetailHistory({Key? key}) : super(key: key);
-
+  const DetailHistory({Key? key, required this.payment}) : super(key: key);
+  final PaymentModel payment;
   @override
   State<DetailHistory> createState() => _DetailHistoryState();
 }
 
 class _DetailHistoryState extends State<DetailHistory> {
+  final DateFormat formatter = DateFormat('dd-MM-yyyy');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +31,32 @@ class _DetailHistoryState extends State<DetailHistory> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 30,),
-          Text('Hóa đơn', style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold, color: Colors.deepOrange),),
-          SizedBox(height: 30,),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          const SizedBox(
+            height: 30,
+          ),
+          const Text(
+            'Hóa đơn',
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepOrange),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('UserID:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                Text(
+                  'UserID:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
                 Spacer(),
-                Text('UserID12354564', style: TextStyle(fontSize: 18),)
+                Text(
+                  'UserID12354564',
+                  style: TextStyle(fontSize: 18),
+                )
               ],
             ),
           ),
@@ -44,9 +64,15 @@ class _DetailHistoryState extends State<DetailHistory> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('Thành tiền:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                Spacer(),
-                Text('100000', style: TextStyle(fontSize: 18),)
+                const Text(
+                  'Thành tiền:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const Spacer(),
+                Text(
+                  widget.payment.amount.ceil().toString(),
+                  style: const TextStyle(fontSize: 18),
+                )
               ],
             ),
           ),
@@ -54,9 +80,16 @@ class _DetailHistoryState extends State<DetailHistory> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('Ngày tạo:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                Spacer(),
-                Text('14/5/2023', style: TextStyle(fontSize: 18),)
+                const Text(
+                  'Ngày tạo:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const Spacer(),
+                Text(
+                  // Format date
+                  formatter.format(widget.payment.createdDate),
+                  style: const TextStyle(fontSize: 18),
+                )
               ],
             ),
           ),
@@ -64,43 +97,65 @@ class _DetailHistoryState extends State<DetailHistory> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('Trạng thái:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                Spacer(),
-                Text('Thành Công', style: TextStyle(fontSize: 18, color: Colors.green),)
+                const Text(
+                  'Trạng thái:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                const Spacer(),
+                Text(
+                  widget.payment.status,
+                  style: const TextStyle(fontSize: 18, color: Colors.green),
+                )
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('UserID:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                Text(
+                  'UserID:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
                 Spacer(),
-                Text('UserID12354564', style: TextStyle(fontSize: 18),)
+                Text(
+                  'UserID12354564',
+                  style: TextStyle(fontSize: 18),
+                )
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: Row(
               children: [
-                Text('UserID:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                Text(
+                  'UserID:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
                 Spacer(),
-                Text('UserID12354564', style: TextStyle(fontSize: 18),)
+                Text(
+                  'UserID12354564',
+                  style: TextStyle(fontSize: 18),
+                )
               ],
             ),
           ),
-          SizedBox(height: 30,),//chỉ admin với hiện Button Cấp vip, còn user chỉ xem detail thôi
+          const SizedBox(
+            height: 30,
+          ), //chỉ admin với hiện Button Cấp vip, còn user chỉ xem detail thôi
           TextButton(
-              onPressed: ()=>{
-
-              },
-              child: Container(
-                color: Colors.blue,
-                  width: 100,
-                  height: 40,
-                  child: Center(child: Text('Cấp VIP', style: TextStyle(fontSize: 20,color: Colors.white),)),
-              ),
+            onPressed: () => {},
+            child: Container(
+              color: Colors.blue,
+              width: 100,
+              height: 40,
+              child: const Center(
+                  child: Text(
+                'Cấp VIP',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              )),
+            ),
           )
         ],
       ),

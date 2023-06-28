@@ -371,4 +371,21 @@ class ApiService {
       throw Exception('Failed to create payment');
     }
   }
+
+  static Future<List<PaymentModel>> getListPayment() async {
+    final response = await http.get(
+      Uri.parse('$_baseUrl/payment/list'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(utf8.decode(response.body.runes.toList()));
+      List<PaymentModel> listPayment = List<PaymentModel>.from(
+          data.map((json) => PaymentModel.fromJson(json)));
+      return listPayment;
+    } else {
+      throw Exception('Failed to create payment');
+    }
+  }
 }

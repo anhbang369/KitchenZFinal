@@ -1,26 +1,16 @@
-import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firstapp/models/home_trend_model.dart';
 import 'package:firstapp/pages/history.dart';
 import 'package:firstapp/pages/history1.dart';
-import 'package:firstapp/pages/momo.dart';
 import 'package:firstapp/pages/payment.dart';
 import 'package:firstapp/pages/profile.dart';
-import 'package:firstapp/pages/qr_momo.dart';
 import 'package:firstapp/service/api_service.dart';
-import 'package:firstapp/service/firebase_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../items/home_advice_item.dart';
 import '../models/home_advice_model.dart';
 import '../items/home_trend_item.dart';
 import 'package:flutter/material.dart';
 import 'package:firstapp/main.dart';
 import 'package:firstapp/pages/favorite.dart';
-
-import 'create_recipe.dart';
-import 'manage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -143,13 +133,13 @@ class _HomePageState extends State<HomePage> {
             CustomerListTitle(
               Icons.history,
               'Lịch sử',
-                  () => Navigator.push(context,
+              () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const History())),
             ),
             CustomerListTitle(
               Icons.history,
               'Lịch sử admin',
-                  () => Navigator.push(context,
+              () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const History1())),
             ),
             CustomerListTitle(Icons.settings, 'Cài đặt', () => {}),
