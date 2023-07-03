@@ -1,4 +1,5 @@
 import 'package:firstapp/models/payment_model.dart';
+import 'package:firstapp/service/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -11,6 +12,12 @@ class DetailHistory extends StatefulWidget {
 
 class _DetailHistoryState extends State<DetailHistory> {
   final DateFormat formatter = DateFormat('dd-MM-yyyy');
+  late PaymentModel payment;
+  @override
+  void initState() {
+    payment = widget.payment;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +77,7 @@ class _DetailHistoryState extends State<DetailHistory> {
                 ),
                 const Spacer(),
                 Text(
-                  widget.payment.amount.ceil().toString(),
+                  payment.amount.ceil().toString(),
                   style: const TextStyle(fontSize: 18),
                 )
               ],
@@ -87,7 +94,7 @@ class _DetailHistoryState extends State<DetailHistory> {
                 const Spacer(),
                 Text(
                   // Format date
-                  formatter.format(widget.payment.createdDate),
+                  formatter.format(payment.createdDate),
                   style: const TextStyle(fontSize: 18),
                 )
               ],
@@ -103,7 +110,7 @@ class _DetailHistoryState extends State<DetailHistory> {
                 ),
                 const Spacer(),
                 Text(
-                  widget.payment.status,
+                  payment.status,
                   style: const TextStyle(fontSize: 18, color: Colors.green),
                 )
               ],
@@ -145,7 +152,26 @@ class _DetailHistoryState extends State<DetailHistory> {
             height: 30,
           ), //chỉ admin với hiện Button Cấp vip, còn user chỉ xem detail thôi
           TextButton(
-            onPressed: () => {},
+            onPressed: () async {
+              // Show loading
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  });
+              ApiService.updateVipUser(payment.id.toString()).then(
+                (value) {
+                  setState(() {
+                    // Update status
+                    payment = value;
+                  });
+                  Navigator.of(context).pop();
+                },
+              );
+            },
             child: Container(
               color: Colors.blue,
               width: 100,

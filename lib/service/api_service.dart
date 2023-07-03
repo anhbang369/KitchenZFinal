@@ -388,4 +388,19 @@ class ApiService {
       throw Exception('Failed to create payment');
     }
   }
+
+  static Future<PaymentModel> updateVipUser(String id) async {
+    final response = await http.get(
+      Uri.parse('$_baseUrl/payment/update?id=$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(utf8.decode(response.body.runes.toList()));
+      return PaymentModel.fromJson(data);
+    } else {
+      throw Exception('Failed to create payment');
+    }
+  }
 }
